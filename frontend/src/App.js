@@ -9,6 +9,8 @@ import q4Image from './q4.png';
 import q5Image from './q5.png';
 
 
+
+
 function HomePage({ onButtonClick }) {
   console.log('HomePage rendered!');
   return (
@@ -24,13 +26,21 @@ function HomePage({ onButtonClick }) {
 
 
 
-function MiddlePage({ onContinueClick }) {
+
+
+
+
+function Question1({ onContinueClick }) {
   //const [score, setScore] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [userInput, setUserInput] = useState('');
 
 
+
+
   const answerOptions = ['A', 'B', 'C', 'D'];
+
+
 
 
   /*const increaseScore = () => {
@@ -38,23 +48,29 @@ function MiddlePage({ onContinueClick }) {
   };*/
 
 
+
+
   const handleAnswerClick = (answer) => {
     setSelectedAnswer(answer);
   };
+
+
 
 
   const handleInputChange = (event) => {
     setUserInput(event.target.value);
   };
 
+
   console.log('MiddlePage rendered!');
   const imageSize = {width: '400px', height: '400px',  marginBottom: '200px', marginLeft: '100px'};
-  
+ 
   return (
     <div>
-      
+     
       <h2>Select An Image</h2>
       <img src = {q1Image}  alt="Image Description" style={imageSize}/>
+
 
        {/* First answer option */}
        <div
@@ -64,6 +80,8 @@ function MiddlePage({ onContinueClick }) {
       >
         A
       </div>
+
+
 
 
       {/* Second answer option */}
@@ -76,6 +94,8 @@ function MiddlePage({ onContinueClick }) {
       </div>
 
 
+
+
       {/* Third answer option */}
       <div
         className={`answer-box ${selectedAnswer === 'C' ? 'selected' : ''}`}
@@ -86,6 +106,8 @@ function MiddlePage({ onContinueClick }) {
       </div>
 
 
+
+
       {/* Fourth answer option */}
       <div
         className={`answer-box ${selectedAnswer === 'D' ? 'selected' : ''}`}
@@ -94,7 +116,7 @@ function MiddlePage({ onContinueClick }) {
       >
         D
       </div>
-      
+     
       <textarea
         className="text-input"
         placeholder="Type your answer here..."
@@ -103,6 +125,7 @@ function MiddlePage({ onContinueClick }) {
         style={{ position: 'absolute', top: '700px', left: '450px', width: '300px', lenght: '500px', height: '50px' }}
       />
 
+
       <button className="App-button" onClick={onContinueClick}>
         Continue
       </button>
@@ -110,13 +133,18 @@ function MiddlePage({ onContinueClick }) {
   );
 }
 
+
 function NewMiddlePage({ onContinueClick }) {
   const [userInput, setUserInput] = useState('');
+
+
 
 
   const handleInputChange = (event) => {
     setUserInput(event.target.value);
   };
+
+
 
 
   console.log('NewMiddlePage rendered!');
@@ -141,6 +169,9 @@ function NewMiddlePage({ onContinueClick }) {
 
 
 
+
+
+
 function EndPage({ onBackToHomeClick }) {
   console.log('EndPage rendered!');
   return (
@@ -155,18 +186,33 @@ function EndPage({ onBackToHomeClick }) {
 }
 
 
+
+
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
 
 
+
+
   const handleButtonClick = () => {
-    setCurrentPage('middle');
+    setCurrentPage('question1');
   };
 
 
-  const handleContinueClick = () => {
-    setCurrentPage('end');
+
+
+  const handleContinueToNewMiddlePage = () => {
+    setCurrentPage('newMiddle');
   };
+
+
+
+
+  const handleContinueToNewEndPage = () => {
+    setCurrentPage('newEnd');
+  };
+
+
 
 
   const handleBackToHomeClick = () => {
@@ -174,31 +220,30 @@ function App() {
   };
 
 
+
+
   return (
     <div className="App">
       <header className="App-header">
-       
-        <p>
-          
-        </p>
+        <p></p>
         {currentPage === 'home' && (
           <HomePage onButtonClick={handleButtonClick} />
         )}
-
-
-        {currentPage === 'middle' && (
-          <MiddlePage onContinueClick={handleContinueClick} />
+        {currentPage === 'question1' && (
+          <Question1  onContinueClick={handleContinueToNewMiddlePage} />
         )}
-
-
-        {currentPage === 'end' && (
+        {currentPage === 'newMiddle' && (
+          <NewMiddlePage onContinueClick={handleContinueToNewEndPage} />
+        )}
+        {currentPage === 'newEnd' && (
           <EndPage onBackToHomeClick={handleBackToHomeClick} />
         )}
-        
       </header>
     </div>
   );
 }
+
+
 
 
 export default App;
