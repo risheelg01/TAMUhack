@@ -72,7 +72,7 @@ def gpt_request():
 
     question_json = request.get_json()
     # Set your OpenAI GPT-3 API key
-    openai.api_key = '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'
+    openai.api_key = 'insert your key'
 
     #prompt = "Give me a question about water that elementary school kids should know."
     prompt = "Give me a question about " + get_question(question_json) + "that elementary school kids should know with 4 multiple choice answers (a,b,c,d format) and provide the correct answer at the end."
